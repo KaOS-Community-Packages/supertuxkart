@@ -1,0 +1,42 @@
+pkgname=supertuxkart
+pkgver=0.8.1
+pkgrel=4
+pkgdesc='Kart racing game featuring Tux and his friends'
+arch=('x86_64')
+url='http://supertuxkart.sourceforge.net/'
+license=('GPL2')
+depends=('openal' 'libvorbis' 'libgl' 'fribidi' 'curl' 'bluez')
+makedepends=('cmake' 'subversion' 'mesa' 'imagemagick' 'setconf')
+source=("http://downloads.sourceforge.net/$pkgname/$pkgname-$pkgver-src.tar.bz2")
+install=supertuxkart.install
+md5sums=('aa31ecf883dc35859eec76c667f1a6d6')
+
+build() {
+  cd ${srcdir}/SuperTuxKart-${pkgver}
+
+  _fn="data/${pkgname}_desktop.template"
+  setconf "$_fn" Exec "$pkgname"
+  setconf "$_fn" TryExec "$pkgname"
+  setconf "$_fn" Icon "$pkgname"_128
+
+  cp /usr/include/GL/glext.h lib/irrlicht/source/Irrlicht/glext.h
+  cp /usr/include/GL/glxext.h lib/irrlicht/source/Irrlicht/glxext.h
+  cp /usr/include/GL/wglext.h lib/irrlicht/source/Irrlicht/wglext.h
+
+  [[ -d build ]] && rm -r build
+  mkdir build && cd build
+
+  cmake .. \
+    -DIRRLICHT_DIR="$srcdir/irrlicht" \
+    -DCMAKE_INSTALL_PREFIX=/usr \
+    -DCMAKE_CXX_FLAGS="-lpthread -lm -ldl $CXXFLAGS"
+
+  make
+}
+
+package() {
+  cd ${srcdir}/SuperTuxKart-${pkgver}
+
+  cd build
+  make DESTDIR=${pkgdir} install
+} 
