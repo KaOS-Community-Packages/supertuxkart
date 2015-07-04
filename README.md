@@ -1,8 +1,8 @@
 # supertuxkart
 Kart racing game featuring Tux and his friends
 
-Depends on:
+Install first:
 
 [**setconf**](https://github.com/KaOS-Community-Packages/setconf)
 
-from KCP
+(Also from KCP)
