@@ -2,6 +2,7 @@
 
 Kart racing game featuring Tux and his friends
 
+http://supertuxkart.sourceforge.net/
 
 How to install:
 
