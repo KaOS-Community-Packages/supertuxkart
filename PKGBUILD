@@ -1,12 +1,12 @@
 pkgname=supertuxkart
 pkgver=0.9
-pkgrel=1
+pkgrel=2
 pkgdesc='Kart racing game featuring Tux and his friends'
 arch=('x86_64')
 url='http://supertuxkart.sourceforge.net/'
 license=('GPL2')
 depends=('openal' 'libvorbis' 'fribidi' 'curl' 'bluez' 'libxrandr' 'glu')
-makedepends=('cmake' 'subversion' 'mesa' 'imagemagick' 'setconf' 'mesa')
+makedepends=('cmake' 'subversion' 'mesa' 'imagemagick' 'setconf' 'libgl')
 source=("http://downloads.sourceforge.net/$pkgname/$pkgname-$pkgver-src.tar.xz")
 install=supertuxkart.install
 md5sums=('ae07569ab02c88ca4d49017df7731923')
