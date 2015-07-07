@@ -1,7 +1,9 @@
 # Supertuxkart
+
 Kart racing game featuring Tux and his friends
 
-How to install
+
+How to install:
 
 kcp -i setconf
 
